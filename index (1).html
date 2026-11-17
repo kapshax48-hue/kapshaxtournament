@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KapshaX Tournament – Official Android App Download</title>
+<meta name="description" content="KapshaX Tournament ka official Android app (APK) free download karo. Tournaments, updates aur support ke liye Telegram channel join karo.">
+<meta name="keywords" content="KapshaX Tournament, KapshaXtournament, KapshaX app, KapshaX apk download">
+<meta name="theme-color" content="#0b0f1a">
+<link rel="canonical" href="https://kapshaxtournament.pages.dev/">
+<meta property="og:title" content="KapshaX Tournament – Official App">
+<meta property="og:description" content="Free Android app download. Telegram par join karo.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kapshaxtournament.pages.dev/">
+<style>
+:root{--bg:#0b0f1a;--card:#141a2b;--line:#222b44;--txt:#e9edf7;--mut:#8f9bb8;--acc:#ff4d2e;--acc2:#ffb020;--tg:#229ed9}
+*{box-sizing:border-box;margin:0}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:radial-gradient(900px 500px at 80% -10%,#2a1230 0,transparent 60%),var(--bg);color:var(--txt);line-height:1.55}
+.wrap{max-width:880px;margin:0 auto;padding:0 18px}
+header{padding:18px 0;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:900;font-size:22px;letter-spacing:.5px}.logo b{color:var(--acc)}
+.hero{text-align:center;padding:36px 0 26px}
+.hero h1{font-size:clamp(30px,7vw,52px);line-height:1.1;font-weight:900}
+.hero h1 span{background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--mut);margin:14px auto 0;max-width:520px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:14px;padding:15px 26px;font-weight:800;font-size:17px;cursor:pointer;text-decoration:none;color:#fff}
+.dl{background:linear-gradient(90deg,var(--acc),#ff7a1a);box-shadow:0 8px 30px #ff4d2e44;margin-top:26px}
+.dl[aria-disabled=true]{background:#2a3350;box-shadow:none;pointer-events:none;color:var(--mut)}
+.tg{background:var(--tg)}
+.meta{color:var(--mut);font-size:13px;margin-top:12px;min-height:20px}
+.banner{display:none;background:#3a2a0a;border:1px solid #6b4d10;color:#ffd98a;border-radius:12px;padding:12px 14px;margin-bottom:14px;text-align:center}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin:16px 0}
+.card h2{font-size:19px;margin-bottom:10px}
+ol{padding-left:20px;color:var(--mut)}ol li{margin:6px 0}ol b{color:var(--txt)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:620px){.row{grid-template-columns:1fr}}
+.notes{white-space:pre-wrap;color:var(--mut);font-size:14px}
+footer{text-align:center;color:var(--mut);font-size:13px;padding:30px 0 40px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><div class="logo">Kapsha<b>X</b></div><a class="btn tg" style="padding:9px 16px;font-size:14px" href="https://t.me/KapshaX" target="_blank" rel="noopener">Telegram</a></header>
+
+  <section class="hero">
+    <div class="banner" id="banner"></div>
+    <h1>KapshaX <span>Tournament</span><br>Official App</h1>
+    <p>Free Android app download karo aur tournaments mein hisa lo.</p>
+    <a id="dl" class="btn dl" href="#" aria-disabled="true">⬇ Download APK</a>
+    <div class="meta" id="meta">Loading…</div>
+  </section>
+
+  <section class="card">
+    <h2>📲 Install kaise karein</h2>
+    <ol>
+      <li><b>Download APK</b> button dabao, file download hone do.</li>
+      <li>Download hui file kholo. Agar phone <b>"Install unknown apps"</b> permission maange to <b>Allow</b> kar do (sirf browser/Files ke liye).</li>
+      <li><b>Install</b> dabao aur app khol lo. 🎉</li>
+    </ol>
+  </section>
+
+  <section class="row">
+    <div class="card">
+      <h2>📣 Telegram Channel</h2>
+      <p style="color:var(--mut);margin-bottom:14px">Updates, room ID/password aur tournament news sabse pehle channel par. <b style="color:var(--txt)">Zaroor join karo!</b></p>
+      <a class="btn tg" href="https://t.me/KapshaX" target="_blank" rel="noopener">Channel Join Karo</a>
+    </div>
+    <div class="card">
+      <h2>💬 Contact / Support</h2>
+      <p style="color:var(--mut);margin-bottom:14px">Koi problem ho ya sawal, seedha Telegram par message karo.</p>
+      <a class="btn tg" href="https://t.me/kapshax48" target="_blank" rel="noopener">@kapshax48</a>
+    </div>
+  </section>
+
+  <section class="card" id="relCard" style="display:none">
+    <h2>🆕 Latest Update <span id="ver" style="color:var(--acc2)"></span></h2>
+    <div class="notes" id="notes"></div>
+  </section>
+
+  <footer>© <span id="y"></span> KapshaX Tournament • Free to download</footer>
+</div>
+<script>
+const REPO='kapshax48-hue/kapshaxtournament';
+const $=id=>document.getElementById(id);
+$('y').textContent=new Date().getFullYear();
+const mb=n=>(n/1048576).toFixed(1)+' MB';
+
+fetch('config.json?'+Date.now()).then(r=>r.json()).then(c=>{
+  if(c.announcement){$('banner').textContent=c.announcement;$('banner').style.display='block'}
+  if(c.maintenance){$('banner').textContent='🛠 App abhi maintenance mein hai. Telegram par updates dekho.';$('banner').style.display='block'}
+}).catch(()=>{});
+
+fetch('https://api.github.com/repos/'+REPO+'/releases/latest').then(r=>r.ok?r.json():Promise.reject()).then(rel=>{
+  const a=(rel.assets||[]).find(x=>x.name.toLowerCase().endsWith('.apk'));
+  if(!a)throw 0;
+  const dl=$('dl');dl.href=a.browser_download_url;dl.removeAttribute('aria-disabled');
+  $('meta').textContent='Version '+rel.tag_name.replace(/^v/i,'')+' • '+mb(a.size)+' • Android • '+new Date(a.updated_at).toLocaleDateString('en-IN')+' • '+a.download_count+' downloads';
+  if(rel.body&&rel.body.trim()){$('relCard').style.display='block';$('ver').textContent=rel.tag_name;$('notes').textContent=rel.body.trim()}
+}).catch(()=>{$('meta').textContent='APK jald hi aa rahi hai. Telegram join karo!'});
+</script>
+</body>
+</html>

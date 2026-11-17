@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kapshaxtournament.pages.dev/sitemap.xml
